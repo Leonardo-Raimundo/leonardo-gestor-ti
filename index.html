@@ -11,7 +11,7 @@
             --bg-card: #161b22;
             --primary: #00d1ff; /* Ciano Elétrico */
             --transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-            --section-padding: clamp(80px, 12vw, 140px);
+            --section-padding: clamp(60px, 10vw, 120px);
         }
 
         body {
@@ -21,6 +21,13 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+
+        /* --- ACESSIBILIDADE --- */
+        .skip-link {
+            position: absolute; top: -40px; left: 0; background: var(--primary);
+            color: #000; padding: 8px; z-index: 10001; transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
 
         /* --- ANIMAÇÕES --- */
         @keyframes revealUp {
@@ -36,7 +43,7 @@
             animation-range: entry 10% cover 30%;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER RESPONSIVO --- */
         .navbar {
             backdrop-filter: blur(20px);
             background: rgba(10, 12, 16, 0.95);
@@ -48,15 +55,16 @@
             font-weight: 900;
             color: #ffffff !important;
             letter-spacing: -1px;
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
         }
         .navbar-brand span { color: var(--primary); }
 
         .nav-link {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #ffffff !important;
             text-transform: uppercase;
+            padding: 10px 15px !important;
         }
 
         .btn-nav {
@@ -66,18 +74,26 @@
             border-radius: 4px;
             font-weight: 800;
             text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Menu Mobile Hamburguer Branco */
+        .navbar-toggler { border: none !important; padding: 0; }
+        .navbar-toggler:focus { box-shadow: none; }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
 
         /* --- HERO --- */
         .hero {
-            padding: clamp(140px, 20vh, 200px) 0 100px;
+            padding: clamp(120px, 15vh, 180px) 0 80px;
             background: radial-gradient(circle at 80% 20%, rgba(0, 209, 255, 0.08), transparent 40%);
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2.2rem, 7vw, 4.8rem);
             font-weight: 900;
-            line-height: 0.95;
+            line-height: 1;
             letter-spacing: -0.05em;
         }
 
@@ -85,30 +101,36 @@
 
         .hero-p {
             max-width: 700px;
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             margin-bottom: 40px;
-            color: #ffffff;
+        }
+
+        .hero-image-wrap img {
+            width: 100%; height: auto;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         /* --- TICKER --- */
         .ticker-wrap {
             background: #000;
-            padding: 20px 0;
+            padding: 15px 0;
             overflow: hidden;
             border-top: 1px solid rgba(255,255,255,0.1);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .ticker { display: flex; white-space: nowrap; animation: scroll 35s linear infinite; }
         .ticker-item {
-            font-weight: 900; font-size: 1.1rem; color: #ffffff;
-            padding: 0 40px; letter-spacing: 2px;
+            font-weight: 900; font-size: clamp(0.9rem, 2vw, 1.1rem); color: #ffffff;
+            padding: 0 30px; letter-spacing: 2px;
         }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- CARDS --- */
         .service-card {
             background: var(--bg-card);
-            padding: 50px 40px;
+            padding: clamp(30px, 5vw, 50px) clamp(20px, 4vw, 40px);
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.1);
             transition: var(--transition);
@@ -120,10 +142,8 @@
             box-shadow: 0 20px 50px rgba(0, 209, 255, 0.2);
         }
 
-        .service-card h3, .service-card h4, .service-card p { color: #ffffff !important; }
-
         .portfolio-img {
-            width: 100%; height: 280px; object-fit: cover;
+            width: 100%; height: clamp(200px, 30vh, 280px); object-fit: cover;
             border-radius: 8px; margin-bottom: 25px;
             border: 1px solid rgba(255,255,255,0.1);
         }
@@ -139,12 +159,12 @@
 
         /* --- BOTÃO PREMIUM --- */
         .btn-premium {
-            padding: 20px 50px; background: var(--primary); color: #000000 !important;
+            padding: 18px 40px; background: var(--primary); color: #000000 !important;
             border-radius: 4px; font-weight: 900; text-decoration: none;
             display: inline-block; transition: var(--transition);
-            text-transform: uppercase;
+            text-transform: uppercase; text-align: center;
         }
-        .btn-premium:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 209, 255, 0.4); color: #000 !important; }
+        .btn-premium:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(0, 209, 255, 0.4); color: #000 !important; }
 
         .pillar-header {
             border-left: 4px solid var(--primary);
@@ -153,27 +173,42 @@
         }
 
         /* --- FOOTER --- */
-        footer { padding: 80px 0; background: #000; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { padding: 60px 0; background: #000; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
 
+        /* --- MOBILE REFINEMENTS --- */
         @media (max-width: 991px) {
+            .navbar-collapse { 
+                background: var(--bg-card); 
+                padding: 30px; 
+                border-radius: 12px; 
+                margin-top: 15px; 
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-link { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0 !important; }
+            .btn-nav { width: 100%; margin-top: 15px; }
+            
             .hero { text-align: center; }
             .hero-p { margin: 0 auto 40px; }
             .hero-image-wrap { margin-top: 50px; }
-            .service-card { padding: 30px 20px; }
+            
+            .d-flex.gap-3 { flex-direction: column; }
+            .btn-premium { width: 100%; }
         }
     </style>
 </head>
 <body>
 
+    <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="#">LEONARDO<span>RAIMUNDO</span></a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
-                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-label="Abrir menu">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navMain">
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav mx-auto text-center">
                         <li class="nav-item"><a class="nav-link" href="#fullstack">Fullstack</a></li>
                         <li class="nav-item"><a class="nav-link" href="#landing-pages">Landing Pages</a></li>
                         <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
@@ -189,10 +224,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-7 reveal">
-                        <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--primary); letter-spacing: 4px;">Desenvolvimento Fullstack & Gestão de T.I.</span>
+                        <span class="text-uppercase fw-bold mb-3 d-block" style="color: var(--primary); letter-spacing: 4px; font-size: 0.85rem;">Desenvolvimento Fullstack & Gestão de T.I.</span>
                         <h1 class="hero-title mb-4">Sistemas de Alta Performance &<br><span>Landing Pages</span>.</h1>
                         <p class="hero-p">Engenharia de software focada em resultados. Desenvolvimento Fullstack com PHP Laravel e Vue.js aliado à gestão estratégica para o seu negócio.</p>
-                        <div class="d-flex flex-column flex-md-row gap-3">
+                        <div class="d-flex gap-3">
                             <a href="#fullstack" class="btn-premium">Desenvolvimento Fullstack</a>
                             <a href="#landing-pages" class="btn-premium" style="background: transparent; border: 2px solid var(--primary); color: var(--primary) !important;">Landing Pages</a>
                         </div>
@@ -271,7 +306,7 @@
                             <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fm=webp&q=80&w=800" class="portfolio-img" alt="Landing Page João Doguinhos">
                             <h3 class="h4 fw-bold mb-3">Landing Page | João Doguinhos</h3>
                             <p class="mb-4">Single-page para hotel de cães em ambiente familiar, destacando terreno espaçoso e passeios agendados.</p>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex flex-wrap gap-2">
                                 <span class="badge border border-primary text-primary">Responsive</span>
                                 <span class="badge border border-primary text-primary">Conversion-First</span>
                             </div>
@@ -285,17 +320,17 @@
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6 reveal">
-                        <h2 class="display-4 fw-bold mb-4"> <span>Minha Formação</span></h2>
-                        <p class="mb-4 fs-5">Graduado em Gestão de T.I. (2026) e Técnico em Análise e Desenvolvimento de Sistemas (2021).</p>
+                        <h2 class="display-4 fw-bold mb-4">Minha <span>Formação</span></h2>
+                        <p class="mb-4 fs-5">Graduado em Gestão de T.I. (2026) e Técnico em Análise e Desenvolvimento de Sistemas (2022).</p>
                         <p class="fs-5">Com formação também em Letras Inglês, garanto uma comunicação clara e fluida para projetos de escala global e liderança técnica.</p>
                     </div>
-                    <div class="col-lg-5 offset-lg-1 reveal">
+                    <div class="col-lg-5 offset-lg-1 reveal mt-5 mt-lg-0">
                         <div class="service-card">
-                            <h3 class="h5 fw-bold mb-3" style="color: var(--primary);">FORMAÇÃO ACADÊMICA</h3>
+                            <h3 class="h5 fw-bold mb-3" style="color: var(--primary);">TRAJETÓRIA ACADÊMICA</h3>
                             <ul class="list-unstyled">
-                                <li class="mb-3"><strong>• Gestão de T.I.</strong> (Tecnólogo 2026)</li>
+                                <li class="mb-3"><strong>• Gestão de T.I.</strong> (Bacharelado 2026)</li>
                                 <li class="mb-3"><strong>• Análise e Desenv. de Sistemas</strong> (Técnico 2022)</li>
-                                <li class="mb-2"><strong>• Letras Inglês</strong> (Licenciatura & Bacharelado 2021)</li>
+                                <li class="mb-2"><strong>• Letras Inglês</strong> (Bacharelado 2021)</li>
                             </ul>
                             <hr class="bg-primary">
                             <p class="small mb-0">Atuante em PHP Laravel, Vue.js, React, React Native, Docker e PostgreSQL.</p>
@@ -307,15 +342,15 @@
 
         <section class="py-5 text-center" style="background: linear-gradient(180deg, #000 0%, #001a20 100%);">
             <div class="container py-5 reveal">
-                <h2 class="display-3 fw-bold mb-4">Vamos elevar o nível do seu<br>próximo produto digital?</h2>
-                <p class="lead mb-5">Atendimento personalizado em Florianópolis e para todo o Brasil.</p>
+                <h2 class="display-4 fw-bold mb-4">Vamos elevar o nível do seu<br>negócio com uma presença digital?</h2>
+                <p class="lead mb-5 px-3">Atendimento personalizado em Florianópolis e para todo o Brasil.</p>
                 <a href="https://wa.me/5548988726106" class="btn-premium">Chamar no WhatsApp</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container text-center">
             <h4 class="navbar-brand mb-4 d-block">LEONARDO<span>RAIMUNDO</span></h4>
             <p class="mb-1 fw-bold">Fullstack Developer & Gestor de T.I.</p>
             <p>Florianópolis, SC | 2026</p>
